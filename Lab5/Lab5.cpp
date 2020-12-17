@@ -13,6 +13,9 @@ class Planet
 	int temp;
 
 	public: 
+	int probesLaunched = 0;
+
+	public: 
 	Planet(string n, double r, double d)
 	{
 		name = n;
@@ -28,12 +31,12 @@ class Planet
 		return name;
 	}
 
-	virtual string getPlanetType()
+	virtual string getPlanetType() // Базовый виртуальный метод проверки принадлежности к классу
 	{
 		return "Planet without an atmosphere.";
 	}
 
-	virtual bool isA(string type)
+	virtual bool isA(string type) // Базовый виртуальный метод isA
 	{
 		if ("Planet without an atmosphere." == type)
 		{
@@ -53,7 +56,7 @@ class Planet
 		return mass;
 	}
 
-	void setTemp(int t)
+	void setTemp(int t) // Базовый метод установки температуры
 	{
 		temp = t;
 	}
@@ -64,7 +67,7 @@ class Planet
 		return temp;
 	}
 
-	virtual ~Planet()
+	virtual ~Planet() // Виртуальный деструктор
 	{
 		cout << name << " was destroyed.\n\n";
 	};
@@ -84,12 +87,12 @@ class AtmPlanet : public Planet
 		cout << " This planet has an atmosphere, it's density is " << atmDens << " e.a. and it creates a greenhouse effect, that causes " << greenHouse << " Kelvin increase in temperature.";
 	}
 
-	string getPlanetType()
+	string getPlanetType() // Перекрытый метод проверки принадлежности к классу
 	{
 		return "Planet with an atmosphere.";
 	}
 
-	bool isA(string type)
+	bool isA(string type) // Перекрытый метод isA 
 	{
 		if ("Planet with an atmosphere." == type)
 		{
@@ -103,12 +106,12 @@ class AtmPlanet : public Planet
 		}
 	}
 
-	void setTemp(int t)
+	void setTemp(int t) // Перекрытый метод установки температуры
 	{
 		temp = t + greenHouse;
 	}
 
-	~AtmPlanet()
+	~AtmPlanet() // Деструктор наследника
 	{
 		cout << "A planet with atmosphere - ";
 	};
@@ -130,5 +133,5 @@ int main()
 	jupiter.getTemp();
 	jupiter.isA("Planet without an atmosphere.");
 
-	cout << jupiter.getName() <<" is a: " << jupiter.getPlanetType() << "\n";
+	cout << jupiter.getName() << " is a: " << jupiter.getPlanetType() << "\n";
 }
